@@ -1,5 +1,7 @@
 # blog
 
+http://blog.minfive.com/
+
 ## Project setup
 ```
 yarn install
