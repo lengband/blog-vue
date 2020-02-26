@@ -8,28 +8,10 @@
     <div>
       <h3 class="block_title">文章分类</h3>
       <ul class="type-list">
-        <li class="type-list-item">
-          <a class="type-list-item-link" href="/">
-            <span class="title">读书笔记</span>
-            <span class="num">（2）</span>
-          </a>
-        </li>
-        <li class="type-list-item">
-          <a class="type-list-item-link" href="/">
-            <span class="title">读书笔记</span>
-            <span class="num">（2）</span>
-          </a>
-        </li>
-        <li class="type-list-item">
-          <a class="type-list-item-link" href="/">
-            <span class="title">读书笔记</span>
-            <span class="num">（2）</span>
-          </a>
-        </li>
-        <li class="type-list-item">
-          <a class="type-list-item-link" href="/">
-            <span class="title">读书笔记</span>
-            <span class="num">（2）</span>
+        <li class="type-list-item" v-for="item in types" :key="item._id">
+          <a class="type-list-item-link" :href="`/${item.name}`">
+            <span class="title">{{ item.cn_name }}</span>
+            <span class="num">（{{ item.post_num }}）</span>
           </a>
         </li>
       </ul>
@@ -37,35 +19,18 @@
     <div>
       <h3 class="block_title">最新文章</h3>
       <ul class="post-list">
-        <li class="post-list-item">
+        <li class="post-list-item my-2" v-for="item in posts" :key="item._id">
           <a class="post-list-item-link d-flex" href="/">
             <div class="img">
-              <img
-                src="http://blog.static.minfive.com/post/18-08-05/843d1948e85e20653861c115389cc7cf.jpg"
-                alt="blog"
-              />
+              <img :src="item.cover" :alt="item.name" />
             </div>
             <div class="info pl-2">
               <div class="title text-truncate">
-                读《健康指导》总结ddddddddddddddd
+                {{ item.name }}
               </div>
-              <div class="time">2018年8月5日</div>
-            </div>
-          </a>
-        </li>
-        <li class="post-list-item">
-          <a class="post-list-item-link d-flex" href="/">
-            <div class="img">
-              <img
-                src="http://blog.static.minfive.com/post/18-08-05/843d1948e85e20653861c115389cc7cf.jpg"
-                alt="blog"
-              />
-            </div>
-            <div class="info pl-2">
-              <div class="title text-truncate">
-                读《健康指导》总结ddddddddddddddd
+              <div class="time">
+                {{ (item.released_time || item.updatedAt) | timeFormat }}
               </div>
-              <div class="time">2018年8月5日</div>
             </div>
           </a>
         </li>
@@ -74,20 +39,51 @@
     <div>
       <h3 class="block_title">文章标签</h3>
       <ul class="tag-list d-flex flex-wrap">
-        <li class="tag-list-item"><tag>css</tag></li>
-        <li class="tag-list-item"><tag>html</tag></li>
-        <li class="tag-list-item"><tag>html</tag></li>
-        <li class="tag-list-item"><tag>html</tag></li>
-        <li class="tag-list-item"><tag>html</tag></li>
-        <li class="tag-list-item"><tag>html</tag></li>
+        <li class="tag-list-item" v-for="item in tags" :key="item._id">
+          <tag>{{ item.cn_name }}</tag>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import { api } from '@/lib/api'
+
 export default {
-  name: 'Sidebar'
+  name: 'Sidebar',
+  props: {
+    posts: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      types: [],
+      tags: []
+    }
+  },
+  created() {
+    this.fetchTags()
+    this.fetchTypes()
+  },
+  methods: {
+    async fetchTags() {
+      const { url, method } = api.getTagList()
+      const {
+        data: { data }
+      } = await this.$http({ url, method })
+      this.tags = data
+    },
+    async fetchTypes() {
+      const { url, method } = api.getTypeList()
+      const {
+        data: { data }
+      } = await this.$http({ url, method })
+      this.types = data
+    }
+  }
 }
 </script>
 
@@ -110,8 +106,8 @@ export default {
     .type-list-item {
       width: 100%;
       border-bottom: 1px dotted #d8e5f3;
-      line-height: 30px;
-      height: 30px;
+      line-height: 40px;
+      height: 40px;
       &:last-child {
         border: 0;
       }
@@ -146,6 +142,7 @@ export default {
     }
   }
   .post-list {
+    text-align: left;
     .post-list-item-link {
       font-size: 14px;
       line-height: 24px;

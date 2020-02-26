@@ -1,22 +1,42 @@
 <template>
-  <div class="card-list d-flex justify-content-between flex-wrap px-4">
-    <card v-for="(item, i) in list" :key="i" class="mb-4" />
+  <div class="card-list">
+    <div class="d-flex flex-wrap px-4">
+      <card
+        v-for="(item, i) in posts"
+        :post="item"
+        :key="i"
+        class="mb-4 mx-3"
+      />
+    </div>
+    <paginator
+      v-model="currentPage"
+      class="d-inline-block"
+      :total="posts.length"
+      :limit="12"
+    />
   </div>
 </template>
 
 <script>
 import Card from './Card'
+import Paginator from './Paginator'
 
 export default {
   name: 'CardList',
   props: {
-    list: {
+    posts: {
       type: Array,
-      default: () => [1, 2, 3, 4]
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      currentPage: 1
     }
   },
   components: {
-    Card
+    Card,
+    Paginator
   }
 }
 </script>

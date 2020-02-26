@@ -2,28 +2,23 @@
   <div class="card">
     <article>
       <div class="cover">
-        <img
-          itemprop="image"
-          src="http://blog.static.minfive.com/post/18-03-03/vue-router.jpg"
-          alt="关于 Vue 的路由权限管理"
-        />
+        <img itemprop="image" :src="post.cover" :alt="post.name" />
         <div class="date-info">
-          <span class="day">5</span>
-          <span class="month mt-1">八月</span>
+          <span class="day">{{ time.day }}</span>
+          <span class="month mt-1">{{ time.month }}月</span>
         </div>
       </div>
       <div class="post-inner p-3">
-        <div class="post-title">关于 Vue 的路由权限管理</div>
-        <div class="author d-flex flex-row-reverse mr-3 my-1">
-          <a href="https://github.com/lengband">lengband</a>
+        <div class="post-title">{{ post.name }}</div>
+        <div class="author d-flex flex-row-reverse mr-3">
+          <a :href="post.author_url">{{ post.author }}</a>
         </div>
-        <div class="post-content">
-          曾经在工作上对 vue
-          路由权限管理这方面有过研究，这几天又看到了几篇相关的文
+        <div class="post-content text-truncate-mutiple-2 mb-4 mt-2">
+          {{ post.introduce }}
         </div>
         <div class="tags">
           <icon type="tag" class="mr-2" />
-          <span class="tag-text">产品，读书</span>
+          <span class="tag-text">{{ tags }}</span>
         </div>
       </div>
     </article>
@@ -31,8 +26,38 @@
 </template>
 
 <script>
+import moment from 'moment'
+import _ from 'lodash'
+
 export default {
-  name: 'Card'
+  name: 'Card',
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    time() {
+      const timeRes = this.post.released_time || this.post.updatedAt
+      const obj = {
+        month: '-',
+        day: '-'
+      }
+      if (timeRes) {
+        const time = moment(timeRes)
+        obj.month = time.get('month') + 1
+        obj.day = time.get('date')
+      }
+      return obj
+    },
+    tags() {
+      if (_.isArray(this.post.tags)) {
+        return this.post.tags.map(v => v.cn_name).join('，')
+      }
+      return ''
+    }
+  }
 }
 </script>
 
@@ -47,6 +72,8 @@ export default {
     height: 160px;
     img {
       width: 100%;
+      height: 160px;
+      background-size: contain;
     }
     .date-info {
       position: absolute;
@@ -90,7 +117,8 @@ export default {
     }
     .post-content {
       font-size: 14px;
-      height: 80px;
+      line-height: 26px;
+      height: 52px;
     }
     .tags {
       font-size: 12px;
