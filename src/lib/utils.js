@@ -1,3 +1,4 @@
+import 'highlight.js/styles/atom-one-dark.css'
 const customCache = new Set()
 
 export const addScript = scriptUrl => {

@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="post-inner p-3">
-        <div class="post-title">{{ post.name }}</div>
+        <div class="post-title" @click="titleClick(post)">{{ post.name }}</div>
         <div class="author d-flex flex-row-reverse mr-3">
           <a :href="post.author_url">{{ post.author }}</a>
         </div>
@@ -56,6 +56,11 @@ export default {
         return this.post.tags.map(v => v.cn_name).join('，')
       }
       return ''
+    }
+  },
+  methods: {
+    titleClick(post) {
+      this.$emit('titleClick', post)
     }
   }
 }

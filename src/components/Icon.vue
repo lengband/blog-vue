@@ -5,12 +5,20 @@
 </template>
 
 <script>
+import { addScript } from '@/lib/utils'
+
+addScript('//at.alicdn.com/t/font_1652447_yvfastp49e.js')
+
 export default {
   name: 'Icon',
   props: {
     type: {
       type: String,
       required: true
+    },
+    style: {
+      type: Object,
+      default: () => ({})
     }
   }
 }

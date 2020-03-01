@@ -6,6 +6,7 @@
         :post="item"
         :key="i"
         class="mb-4 mx-3"
+        @titleClick="titleClick"
       />
     </div>
     <paginator
@@ -37,6 +38,11 @@ export default {
   components: {
     Card,
     Paginator
+  },
+  methods: {
+    titleClick(...args) {
+      this.$emit('titleClick', ...args)
+    }
   }
 }
 </script>

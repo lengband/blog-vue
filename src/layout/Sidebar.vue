@@ -20,7 +20,7 @@
       <h3 class="block_title">最新文章</h3>
       <ul class="post-list">
         <li class="post-list-item my-2" v-for="item in posts" :key="item._id">
-          <a class="post-list-item-link d-flex" href="/">
+          <a class="post-list-item-link d-flex" :href="`/detail/${item._id}`">
             <div class="img">
               <img :src="item.cover" :alt="item.name" />
             </div>
@@ -52,21 +52,17 @@ import { api } from '@/lib/api'
 
 export default {
   name: 'Sidebar',
-  props: {
-    posts: {
-      type: Array,
-      default: () => []
-    }
-  },
   data() {
     return {
       types: [],
-      tags: []
+      tags: [],
+      posts: []
     }
   },
   created() {
     this.fetchTags()
     this.fetchTypes()
+    this.fetchPost()
   },
   methods: {
     async fetchTags() {
@@ -82,6 +78,13 @@ export default {
         data: { data }
       } = await this.$http({ url, method })
       this.types = data
+    },
+    async fetchPost() {
+      const { url, method } = api.getPostList()
+      const {
+        data: { data }
+      } = await this.$http({ url, method, params: { released: true } })
+      this.posts = data
     }
   }
 }

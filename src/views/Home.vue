@@ -3,10 +3,11 @@
     <banner />
     <div class="home-body container d-flex mt-5">
       <div style="flex: 1;">
-        <card-list :posts="posts" />
+        <card-list :posts="posts" @titleClick="titleClick" />
       </div>
-      <sidebar :posts="posts" />
+      <sidebar />
     </div>
+    <footer-info />
   </div>
 </template>
 
@@ -15,13 +16,15 @@ import Banner from '@/layout/Banner'
 import Sidebar from '@/layout/Sidebar'
 import CardList from '@/components/CardList'
 import { api } from '@/lib/api'
+import FooterInfo from '@/layout/Footer'
 
 export default {
   name: 'Home',
   components: {
     Banner,
     CardList,
-    Sidebar
+    Sidebar,
+    FooterInfo
   },
   data() {
     return {
@@ -38,6 +41,9 @@ export default {
         data: { data }
       } = await this.$http({ url, method, params: { released: true } })
       this.posts = data
+    },
+    titleClick(post) {
+      this.$router.push(`/detail/${post._id}`)
     }
   }
 }
