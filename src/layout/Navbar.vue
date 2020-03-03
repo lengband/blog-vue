@@ -2,7 +2,7 @@
   <header class="navbar">
     <div class="container d-flex justify-content-between">
       <router-link to="/" class="logo-link">
-        <img src="../assets/logo_white.png" alt="logo" />
+        <img src="../assets/images/logo_white.png" alt="logo" />
       </router-link>
       <div class="menus d-flex justify-content-around">
         <router-link v-for="(item, i) in menus" :key="i" :to="item.path">

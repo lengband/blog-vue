@@ -27,7 +27,7 @@ export default {
   position: relative;
   background: center no-repeat;
   background-size: cover;
-  background-image: url('../assets/banner-bg.jpg');
+  background-image: url('../assets/images/banner-bg.jpg');
   height: 350px;
   &::after {
     content: '';

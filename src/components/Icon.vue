@@ -7,7 +7,7 @@
 <script>
 import { addScript } from '@/lib/utils'
 
-addScript('//at.alicdn.com/t/font_1652447_yvfastp49e.js')
+addScript('//at.alicdn.com/t/font_1652447_6307i99i3gn.js')
 
 export default {
   name: 'Icon',
