@@ -2,7 +2,9 @@
   <div class="banner">
     <navbar />
     <div class="container">
-      <div class="title">LENGBAND BLOG</div>
+      <transition enter-active-class="animated zoomIn">
+        <div v-if="show" class="title">LENGBAND BLOG</div>
+      </transition>
       <hr class="title_hr" />
       <div class="desc">
         个人博客，用于分享一些在日常学习工作甚至于生活中遇到的一些比较有趣的东西。七荤八素，胡言乱语，望各位看官见谅。
@@ -18,6 +20,14 @@ export default {
   name: 'Banner',
   components: {
     Navbar
+  },
+  data() {
+    return {
+      show: false
+    }
+  },
+  mounted() {
+    this.show = true
   }
 }
 </script>

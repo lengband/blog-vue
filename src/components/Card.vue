@@ -7,6 +7,9 @@
           <span class="day">{{ time.day }}</span>
           <span class="month mt-1">{{ time.month }}月</span>
         </div>
+        <a @click="titleClick(post)" class="link-wrapper">
+          <icon type="enter" color="rgba(30,200,252,.9)" />
+        </a>
       </div>
       <div class="post-inner p-3">
         <div class="post-title" @click="titleClick(post)">{{ post.name }}</div>
@@ -72,9 +75,30 @@ export default {
 .card {
   width: 280px;
   height: 350px;
+  &:hover {
+    .cover::before {
+      background-color: rgba(30, 200, 252, 0.7);
+    }
+    .cover .link-wrapper {
+      transform: translate(-50%, -50%) rotateZ(365deg) scale(1);
+      opacity: 1;
+    }
+  }
   .cover {
     position: relative;
     height: 160px;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: transparent;
+      transition: background 0.3s;
+    }
     img {
       width: 100%;
       height: 160px;
@@ -102,6 +126,27 @@ export default {
       }
       .month {
         font-size: 12px;
+      }
+    }
+    .link-wrapper {
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+      transform: translate(-50%, -50%) rotateZ(0) scale(0.5);
+      opacity: 0;
+      text-align: center;
+      line-height: 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50% 50%;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 3;
+      &:hover {
+        svg {
+          color: #0e627b;
+        }
       }
     }
   }

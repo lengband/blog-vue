@@ -25,15 +25,19 @@ export default {
         },
         {
           name: '归档',
-          path: '/'
+          path: '/archives'
         },
         {
           name: '作品',
-          path: '/'
+          path: '/demos'
+        },
+        {
+          name: '理财',
+          path: '/money'
         },
         {
           name: '生活',
-          path: '/'
+          path: '/life'
         }
       ]
     }
@@ -62,6 +66,11 @@ export default {
     width: 300px;
     a {
       color: #fff;
+      text-decoration: none;
+      &:hover {
+        color: #353866;
+      }
+      transition: color 0.2s;
     }
   }
 }

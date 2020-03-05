@@ -171,4 +171,7 @@ table tr:hover {
 table th {
   white-space: nowrap; /*表头内容强制在一行显示*/
 }
+p img {
+  max-width: 100%;
+}
 </style>
