@@ -7,6 +7,7 @@
       </div>
       <sidebar />
     </div>
+    <easy-go-top backgroundColor="rgb(25, 171, 214)" />
     <footer-info />
   </div>
 </template>

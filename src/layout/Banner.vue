@@ -1,6 +1,6 @@
 <template>
-  <div class="banner">
-    <navbar />
+  <div class="banner position-relative">
+    <navbar :class="{ 'navbar-top': scrollActive }" v-scroll="handleScroll" />
     <div class="container">
       <transition enter-active-class="animated zoomIn">
         <div v-if="show" class="title">LENGBAND BLOG</div>
@@ -23,11 +23,21 @@ export default {
   },
   data() {
     return {
-      show: false
+      show: false,
+      scrollActive: false
     }
   },
   mounted() {
     this.show = true
+  },
+  methods: {
+    handleScroll() {
+      if (window.scrollY > 30) {
+        this.scrollActive = true
+      } else {
+        this.scrollActive = false
+      }
+    }
   }
 }
 </script>
@@ -49,7 +59,9 @@ export default {
     background-color: rgba(64, 84, 90, 0.6);
   }
   .container {
-    position: relative;
+    position: absolute;
+    top: calc(50%);
+    transform: translateY(-50%);
     z-index: 1;
     .title_hr {
       margin: 20px auto;

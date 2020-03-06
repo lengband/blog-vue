@@ -3145,6 +3145,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easy-go-top@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/easy-go-top/-/easy-go-top-1.0.1.tgz#c719c6d8bdcb04bc0bec46c0993c2d2844f3e501"
+  integrity sha512-kfp5A9zJPDXDpe/sUQQyyBs1RTzIHP5dcoAzwpwAafQazBHKaYU7e2dShKOPdlq64XfxazPx9/Knldjj7xoJzQ==
+
 easy-stack@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/easy-stack/download/easy-stack-1.0.0.tgz#12c91b3085a37f0baa336e9486eac4bf94e3e788"

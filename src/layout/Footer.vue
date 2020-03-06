@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="footer-links">
-        <h3 class="footer-item_title">友情链接</h3>
+        <h3 class="footer-item_title">优秀博文</h3>
         <ul>
           <li class="footer-item_link">
             <a href="https://jdc.jd.com/">JDC京东设计中心</a>

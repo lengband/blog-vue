@@ -1,40 +1,41 @@
 <template>
   <div class="text-left detail">
-    <navbar
-      style="background-image: linear-gradient(to right,#19abd6 35%,#3ac0e8 100%)"
-    />
-    <div class="home-body container d-flex mt-5">
-      <div class="flex-fill pr-5">
-        <article>
-          <div class="post-cover w-100">
-            <img :src="detail.cover" alt="文章封面" />
-          </div>
-          <header class="my-5">
-            <h2 class="mb-3">{{ detail.name }}</h2>
-            <ul class="mark-info d-flex">
-              <li class="mark-item">
-                <icon type="writer" />
-                <span class="ml-2">{{ detail.author }}</span>
-              </li>
-              <li class="mark-item">
-                <icon type="time" />
-                <span class="ml-2">{{ time }}</span>
-              </li>
-              <li class="mark-item">
-                <icon type="tag" />
-                <span class="ml-2">{{ tags }}</span>
-              </li>
-              <li class="mark-item">
-                <icon type="view" />
-                <span class="ml-2">{{ detail.view_count }}</span>
-              </li>
-            </ul>
-          </header>
-          <div ref="contentRef" v-html="detail.content" />
-        </article>
+    <navbar class="navbar-top" />
+    <main>
+      <div class="home-body container d-flex mt-5">
+        <div class="flex-fill pr-5">
+          <article>
+            <div class="post-cover w-100">
+              <img :src="detail.cover" alt="文章封面" />
+            </div>
+            <header class="my-5">
+              <h2 class="mb-3">{{ detail.name }}</h2>
+              <ul class="mark-info d-flex">
+                <li class="mark-item">
+                  <icon type="writer" />
+                  <span class="ml-2">{{ detail.author }}</span>
+                </li>
+                <li class="mark-item">
+                  <icon type="time" />
+                  <span class="ml-2">{{ time }}</span>
+                </li>
+                <li class="mark-item">
+                  <icon type="tag" />
+                  <span class="ml-2">{{ tags }}</span>
+                </li>
+                <li class="mark-item">
+                  <icon type="view" />
+                  <span class="ml-2">{{ detail.view_count }}</span>
+                </li>
+              </ul>
+            </header>
+            <div ref="contentRef" v-html="detail.content" />
+          </article>
+        </div>
+        <sidebar />
       </div>
-      <sidebar />
-    </div>
+      <easy-go-top backgroundColor="rgb(25, 171, 214)" />
+    </main>
     <footer-info />
   </div>
 </template>
@@ -114,6 +115,9 @@ export default {
 
 <style lang="scss" scoped>
 .detail {
+  main {
+    padding-top: 60px;
+  }
   .post-cover {
     img {
       width: 100%;

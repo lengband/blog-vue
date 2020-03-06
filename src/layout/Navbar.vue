@@ -46,18 +46,36 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes navbarHeight {
+  0% {
+    height: 60px;
+  }
+  30% {
+    height: 70px;
+  }
+  100% {
+    height: 60px;
+  }
+}
 .navbar {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
-  height: 90px;
-  transition: height 0.3s;
+  background-image: linear-gradient(to right, transparent, transparent);
+  // background-image: linear-gradient(to right, transparent, transparent);
+  // background-color: transparent;
+  height: 60px;
   z-index: 100;
   color: #fff;
+  margin-bottom: 60px;
+  &.navbar-top {
+    // background-color: #19abd6;
+    animation: navbarHeight 0.3s;
+    background-image: linear-gradient(to right, #19abd6 35%, #3ac0e8 100%);
+  }
   .logo-link {
-    height: 60px;
+    height: 40px;
     img {
       height: 100%;
     }
@@ -67,6 +85,7 @@ export default {
     a {
       color: #fff;
       text-decoration: none;
+      font-size: 14px;
       &:hover {
         color: #353866;
       }

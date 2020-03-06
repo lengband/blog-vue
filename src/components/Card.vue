@@ -80,7 +80,7 @@ export default {
       background-color: rgba(30, 200, 252, 0.7);
     }
     .cover .link-wrapper {
-      transform: translate(-50%, -50%) rotateZ(365deg) scale(1);
+      transform: translate(-50%, -50%) rotateZ(370deg) scale(1);
       opacity: 1;
     }
   }
