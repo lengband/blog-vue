@@ -1,7 +1,7 @@
 <template>
   <div class="banner position-relative">
     <navbar :class="{ 'navbar-top': scrollActive }" v-scroll="handleScroll" />
-    <div class="container">
+    <div class="container banner-main w-100">
       <transition enter-active-class="animated zoomIn">
         <div v-if="show" class="title">LENGBAND BLOG</div>
       </transition>
@@ -58,11 +58,13 @@ export default {
     top: 0;
     background-color: rgba(64, 84, 90, 0.6);
   }
-  .container {
+  .banner-main {
     position: absolute;
-    top: calc(50%);
-    transform: translateY(-50%);
+    top: calc(40%);
+    display: block;
     z-index: 1;
+    left: 0;
+    right: 0;
     .title_hr {
       margin: 20px auto;
       height: 4px;

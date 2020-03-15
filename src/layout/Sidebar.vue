@@ -24,7 +24,7 @@
             <div class="img">
               <img :src="item.cover" :alt="item.name" />
             </div>
-            <div class="info pl-2">
+            <div class="info pl-3">
               <div class="title text-truncate">
                 {{ item.name }}
               </div>
@@ -163,8 +163,16 @@ export default {
       .img {
         width: 80px;
         height: 60px;
+        overflow: hidden;
+        position: relative;
+        display: block;
         img {
-          width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: block;
+          height: 100%;
         }
       }
       .info {

@@ -87,7 +87,7 @@ export default {
       text-decoration: none;
       font-size: 14px;
       &:hover {
-        color: #353866;
+        color: #7ac9cc;
       }
       transition: color 0.2s;
     }

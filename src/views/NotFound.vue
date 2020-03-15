@@ -9,30 +9,14 @@
           But we have lots of other pages for you to see.
         </p>
         <ul class="social d-flex justify-content-center align-items-center">
-          <li class="social-item">
+          <li class="social-item" v-for="(item, i) in list" :key="i">
             <a
-              href="https://github.com/lengband"
+              :href="item.href"
+              class="d-block h-100"
               target="_blank"
-              title="github"
+              :title="item.title"
             >
-              <icon
-                type="github"
-                color="#fff"
-                style="width: 30px; height: 30px;"
-              />
-            </a>
-          </li>
-          <li class="social-item">
-            <a
-              href="https://github.com/lengband"
-              target="_blank"
-              title="github"
-            >
-              <icon
-                type="email_circle"
-                color="#fff"
-                style="width: 25px; height: 25px;"
-              />
+              <icon :type="item.iconType" color="#fff" class="w-100 h-100" />
             </a>
           </li>
         </ul>
@@ -50,7 +34,20 @@ export default {
   name: 'NotFound',
   data() {
     return {
-      bgImg
+      bgImg,
+      list: [
+        {
+          href: 'https://github.com/lengband',
+          title: 'github',
+          iconType: 'github1',
+          height: '30px'
+        },
+        {
+          href: 'mailto:lengband@163.com?subject=联系作者&body=hello',
+          title: 'email',
+          iconType: 'email1'
+        }
+      ]
     }
   },
   components: {
@@ -92,6 +89,13 @@ export default {
   .social {
     .social-item {
       margin: 0 4px;
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s;
+      transform-origin: center;
+      &:hover {
+        transform: rotate(360deg);
+      }
     }
   }
 }

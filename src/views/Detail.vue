@@ -3,7 +3,8 @@
     <navbar class="navbar-top" />
     <main>
       <div class="home-body container d-flex mt-5">
-        <div class="flex-fill pr-5">
+        <vcl-facebook class="w-100 mb-5" v-if="loading" />
+        <div v-else class="flex-fill pr-5">
           <article>
             <div class="post-cover w-100">
               <img :src="detail.cover" alt="文章封面" />
@@ -49,6 +50,7 @@ import { api } from '@/lib/api'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-light.css'
 import marked from 'marked'
+import { VclFacebook } from 'vue-content-loading'
 
 const compiledMarkdown = value => {
   marked.setOptions({
@@ -78,11 +80,13 @@ export default {
   components: {
     Navbar,
     Sidebar,
-    FooterInfo
+    FooterInfo,
+    VclFacebook
   },
   data() {
     return {
-      detail: {}
+      detail: {},
+      loading: false
     }
   },
   computed: {
@@ -101,13 +105,14 @@ export default {
   created() {
     this.fetchPostDetail()
   },
-  mounted() {},
   methods: {
     async fetchPostDetail() {
       const { url, method } = api.getPostById(this.$route.params.id)
+      this.loading = true
       const { data } = await this.$http({ url, method })
       this.detail = data
       this.detail.content = compiledMarkdown(data.content)
+      this.loading = false
     }
   }
 }
@@ -116,6 +121,7 @@ export default {
 <style lang="scss" scoped>
 .detail {
   main {
+    min-height: 350px;
     padding-top: 60px;
   }
   .post-cover {
