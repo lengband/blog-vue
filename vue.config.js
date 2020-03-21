@@ -1,6 +1,7 @@
 const PROXY_TIMEOUT = 1000 * 60 * 2
 
 module.exports = {
+  publicPath: '/blog',
   devServer: {
     overlay: {
       warnings: true,

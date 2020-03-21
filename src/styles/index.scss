@@ -6,6 +6,10 @@ body {
   color: #666;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .block_title {
   text-align: left;
   color: #242f35;
@@ -43,4 +47,13 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }

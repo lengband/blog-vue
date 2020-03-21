@@ -1,13 +1,38 @@
 <template>
-  <header class="navbar">
-    <div class="container d-flex justify-content-between">
+  <header class="navbar-header">
+    <div
+      class="container d-flex justify-content-between h-100 align-items-center"
+    >
       <router-link to="/" class="logo-link">
         <img src="../assets/images/logo_white.png" alt="logo" />
       </router-link>
-      <div class="menus d-flex justify-content-around">
+      <div class="menus d-flex justify-content-around h-100 align-items-center">
         <router-link v-for="(item, i) in menus" :key="i" :to="item.path">
           {{ item.name }}
         </router-link>
+        <div
+          class="admin-menus justify-content-center cursor-pointer d-flex align-items-center h-100"
+        >
+          <icon type="user" />
+          <ul class="sub-menus">
+            <li class="menu-item d-flex align-items-center" @click="login">
+              <icon
+                type="login"
+                class="mr-2"
+                style="width: 16px; height: 16px;"
+              />
+              <span class="text">用户登录</span>
+            </li>
+            <li class="menu-item d-flex align-items-center" @click="adminLogin">
+              <icon
+                type="admin"
+                class="mr-2"
+                style="width: 16px; height: 16px;"
+              />
+              <span class="text">管理员登录</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
@@ -30,22 +55,25 @@ export default {
         {
           name: '作品',
           path: '/demos'
-        },
-        {
-          name: '理财',
-          path: '/money'
-        },
-        {
-          name: '生活',
-          path: '/life'
         }
       ]
+    }
+  },
+  methods: {
+    login() {
+      alert('功能暂未开通，目前仅支持管理员登录')
+    },
+    adminLogin() {
+      console.log(process.env, 'process.env')
+      window.location.href = `${process.env.VUE_APP_ADMIN_PERFIX}`
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import '../styles/_variables.scss';
+
 @keyframes navbarHeight {
   0% {
     height: 60px;
@@ -57,7 +85,7 @@ export default {
     height: 60px;
   }
 }
-.navbar {
+.navbar-header {
   position: fixed !important;
   top: 0;
   left: 0;
@@ -90,6 +118,38 @@ export default {
         color: #7ac9cc;
       }
       transition: color 0.2s;
+    }
+    .admin-menus {
+      position: relative;
+      width: 100px;
+      &:hover {
+        .sub-menus {
+          display: block;
+        }
+      }
+      .sub-menus {
+        display: none;
+        padding: 6px;
+        width: 130px;
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        border-radius: 5px 5px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+        .menu-item {
+          cursor: pointer;
+          height: 30px;
+          line-height: 30px;
+          color: $text-color;
+          .text {
+            font-size: 14px;
+          }
+          &:hover {
+            color: $heading-color;
+          }
+        }
+      }
     }
   }
 }
