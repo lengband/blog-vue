@@ -10,7 +10,7 @@
   "dependencies": {
     "add": "^2.0.6",
     "animate.css": "^3.7.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.0",
     "babel-runtime": "^6.26.0",
     "core-js": "^3.6.4",
